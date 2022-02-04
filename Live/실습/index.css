@@ -1,0 +1,27 @@
+/* 아래 코드는 문제 해결을 위해 기본적으로 제공되는 코드입니다. 수정하지 마세요! */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.map{
+	width: 200px;
+	height: 200px;
+	background-color: red;
+}
+
+/* 지시사항 2번과 3번을 참고하여 코드를 작성하세요. */
+@media (min-width: 360px) and (max-width: 720px)
+{
+	.map{
+			background-color: blue;
+			transition: background-color 1.5s;
+	}
+	
+	.map:hover{
+			background-color: orange;
+	}
+}
+
+
+}

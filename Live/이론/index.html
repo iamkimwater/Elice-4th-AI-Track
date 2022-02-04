@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+  <title>WEB1</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <header>
+    <h1><a href="index.html" onclick="
+      event.preventDefault();
+      mode = 'WELCOME';
+      Article();
+    ">WEB</a></h1>
+  </header>
+  <nav>
+    <ol>
+    </ol>
+  </nav>
+  <article>
+  </article>
+  <ul>
+    <li>
+      <a href="/create" onclick="
+        event.preventDefault();
+        mode = 'CREATE';
+        Article();
+      ">create</a>
+    </li>
+    <li>
+      <a href="/update" onclick="
+        event.preventDefault();
+        mode = 'UPDATE';
+        Article();
+      ">Update</a>
+    </li>
+  </ul>
+  <script>
+    let selectedId = 1;
+    let mode = 'CREATE';
+    let nextId = 3;
+    let topics = [
+      {id:1, title:'html', body:'html is ..'},
+      {id:2, title:'css', body:'css is ..'}
+    ]
+    
+    function Article(){
+      let articleTag = '';
+      if(mode === 'WELCOME'){
+        articleTag = `<h2>Welcome</h2>Hello WEB`;
+      } else if(mode === 'READ'){
+        for(let i=0; i<topics.length; i++){
+          let t = topics[i];
+          if(t.id === selectedId){
+            articleTag = `<h2>${t.title}</h2>${t.body}`;
+          }
+        }
+      } else if(mode === 'CREATE'){
+        articleTag = `
+          <h2>Create</h2>
+          <form onsubmit="
+            event.preventDefault();
+            let title = event.target.title.value;
+            let body = event.target.body.value;
+            topics.push({id:nextId, title:title, body:body});
+            Nav();
+            mode = 'READ';
+            selectedId = nextId;
+            Article();
+            nextId = nextId + 1;
+          ">
+            <p><input type="text" placeholder="title" name="title"></p>
+            <p><textarea placeholder="body" name="body"></textarea></p>
+            <p><input type="submit" value="Create"></p>
+          </form>
+        `;
+      } else if(mode === 'UPDATE'){
+        articleTag = `Update`;
+      }
+      document.querySelector('article').innerHTML = articleTag;
+    }
+    Article();
+
+    function Nav(){
+      let liTag = '';
+      for(let i=0; i<topics.length; i++){
+        let t = topics[i];
+        liTag = liTag + `<li><a href="/read/${t.id}" onclick="
+          event.preventDefault();
+          mode = 'READ';
+          selectedId =  ${t.id};
+          Article();
+        ">${t.title}</a></li>`;
+      }
+      document.querySelector('nav>ol').innerHTML = liTag;
+    }
+    Nav();
+  </script>
+</body>
+</html>
