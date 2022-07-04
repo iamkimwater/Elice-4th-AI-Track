@@ -4,7 +4,7 @@
 <p align="center"><img width="500" alt="elice@2x" src="https://user-images.githubusercontent.com/97582839/177148531-741ba76e-6ada-4d9c-a5f6-1a494c6e7efd.png"></p>
 <br>
 
-## **Hello, World! I am Kimwater, elice 4th AI-track Racer.**
+## **Hello, World! I am Kimwater, Elice 4th AI-track Racer.**
 <br>
 
 ---
